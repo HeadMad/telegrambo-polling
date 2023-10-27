@@ -1,0 +1,29 @@
+{
+  "name": "telegrambo-polling",
+  "version": "0.9.0",
+  "description": "onMatch method for telegrambo library",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "node --env-file .env ./test.js"
+  },
+  "keywords": [
+    "telegrambo",
+    "plugin",
+    "polling",
+    "longpolling"
+  ],
+  "author": "HeadMad",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HeadMad/telegrambo-polling.git"
+  },
+  "bugs": {
+    "url": "https://github.com/HeadMad/telegrambo-polling/issues"
+  },
+  "homepage": "https://github.com/HeadMad/telegrambo-polling#readme",
+  "license": "MIT",
+  "devDependencies": {
+    "telegrambo": "^0.5.6"
+  }
+}
