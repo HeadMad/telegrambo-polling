@@ -34,12 +34,11 @@ bot.poliing({
 **Parameters:**
 
 - `bot` (BotContext ): The bot instance.
-- `matchSeparator` (string, optional): The separator used to split the match string into an array. Defaults to `'::'`.
 
 **Returns:**
 
 - `function`: A callback function that get option object:
-- `options` (object, optional): Parameters for [getUpdates](https://core.telegram.org/bots/api#getupdates) method
+- `options` (object, optional): Parameters for [getUpdates](https://core.telegram.org/bots/api#getupdates) method.
 
 
 
