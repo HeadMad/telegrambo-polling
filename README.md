@@ -10,10 +10,11 @@ You can install telegrambo-polling using npm:
 
 ## Usage
 ```js
-import { nodeBotAsync } from 'telegrambo';
+import telegrambo from 'telegrambo';
 import polling  from 'telegrambo-polling';
 
-const bot = nodeBotAsync(process.env.YOU_BOT_TOKEN);
+const bot = telegrambo(process.env.YOU_BOT_TOKEN);
+const bot.polling = polling;
 
 // Create echo bot
 bot.on('message', (ctx) => {
@@ -31,14 +32,10 @@ bot.poliing({
 });
 ```
 
-**Parameters:**
-
-- `bot` (BotContext ): The bot instance.
-
 **Returns:**
 
 - `function`: A callback function that get option object:
-- `options` (object, optional): Parameters for [getUpdates](https://core.telegram.org/bots/api#getupdates) method.
+  - `options` (object, optional): Parameters for [getUpdates](https://core.telegram.org/bots/api#getupdates) method.
 
 
 

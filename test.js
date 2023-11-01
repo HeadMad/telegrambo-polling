@@ -1,8 +1,8 @@
-import {nodeBotAsync} from 'telegrambo';
+import telegrambo from 'telegrambo';
 import polling from './index.js';
 
-const bot = nodeBotAsync(process.env.BOT_TOKEN);
-bot.polling = polling(bot);
+const bot = telegrambo(process.env.BOT_TOKEN);
+bot.polling = polling;
 
 bot.on('message', ctx => {
   ctx.sendMessage({
@@ -10,4 +10,4 @@ bot.on('message', ctx => {
   });
 });
 
-bot.polling();
+  bot.polling();

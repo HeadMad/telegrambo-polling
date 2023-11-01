@@ -5,7 +5,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "test": "node --env-file .env ./test.js"
+    "test": "nodemon --env-file .env ./test.js"
   },
   "keywords": [
     "telegrambo",
@@ -24,6 +24,7 @@
   "homepage": "https://github.com/HeadMad/telegrambo-polling#readme",
   "license": "MIT",
   "devDependencies": {
-    "telegrambo": "^0.5.6"
+    "nodemon": "^3.0.1",
+    "telegrambo": "^0.6.0"
   }
 }
