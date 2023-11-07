@@ -4,10 +4,15 @@ import polling from './index.js';
 const bot = telegrambo(process.env.BOT_TOKEN);
 bot.polling = polling;
 
-bot.on('message', ctx => {
-  ctx.sendMessage({
-    text: ctx.update.message.text
+bot.on(event => {
+  event.sendMessage({
+    text: event.message.text
   });
 });
 
-  bot.polling();
+  bot.polling(async (update, stop) => {
+    if (update.message.text === 'stop')
+      stop();
+    else 
+      await bot.setUpdate(update)
+  });

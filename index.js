@@ -9,10 +9,16 @@ export default polling;
  * @param {number} options.offset - The initial offset value for the first API request. Default is 0.
  * @param {number} options.limit - The maximum number of updates to receive per API request. Default is 100.
  * @param {Array<string>} options.allowedUpdates - An array of allowed update types. Default is an empty array.
+ * @param {function} handler - The handler function to call for each update.
  * @return {Promise<undefined>} A promise that resolves when the polling loop is stopped.
  */
 function polling(bot) {
-  return async (options = {}) => {
+  return async (options = {}, handler) => {
+    if (typeof options === 'function') {
+      handler = options;
+      options = {};
+    }
+
     let {
       timeout = 60,
       offset = 0,
@@ -20,7 +26,10 @@ function polling(bot) {
       allowedUpdates = []
     } = options;
 
-    while (true) {
+    let next = true;
+    const stop = () => { next = false; };
+
+    while (next) {
       const response = await bot.getUpdates({
         offset,
         timeout,
@@ -36,8 +45,22 @@ function polling(bot) {
 
       offset = response.result.at(-1).update_id + 1;
 
-      for (let update of response.result)
-        bot.setUpdate(update);
+      if (!handler)
+        for (const update of response.result)
+          bot.setUpdate(update);
+
+      else
+        for (const update of response.result) {
+          await handler(update, stop);
+          if (!next) {
+            await bot.getUpdates({
+              offset: update.update_id + 1,
+              limit: 1,
+              timeout: 0
+            });
+            break;
+          } // if !next
+        }   // for handler
     }
   };
 }
