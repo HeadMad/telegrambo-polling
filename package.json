@@ -1,6 +1,6 @@
 {
   "name": "telegrambo-polling",
-  "version": "0.10.0",
+  "version": "1.0.0",
   "description": "method for polling telegram service",
   "main": "index.js",
   "type": "module",
